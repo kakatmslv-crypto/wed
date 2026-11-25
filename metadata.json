@@ -1,0 +1,6 @@
+{
+  "name": "សិរីមង្គលវិវាហ៍ — ធៀបភ្ជាប់ពាក្យ",
+  "description": "ធៀបភ្ជាប់ពាក្យ និងកម្មវិធីសិរីមង្គលវិវាហ៍ រុំ ផានិត និង ជា ស្រីណា — ថ្ងៃទី ០៦ ខែកុម្ភៈ ឆ្នាំ២០២៧ នៅខេត្តត្បូងឃ្មុំ។",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
