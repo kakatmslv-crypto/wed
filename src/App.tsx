@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, ChevronDown, Mail, PenLine } from 'lucide-react';
 import { BottomDock } from './components/BottomDock';
+import { ChatQrSection } from './components/ChatQrSection';
 import { CountdownStrip } from './components/CountdownStrip';
 import { EnvelopeCover } from './components/EnvelopeCover';
 import { FormalInvitationCard } from './components/FormalInvitationCard';
@@ -269,6 +270,16 @@ export default function App() {
               groomName={lang === 'km' ? invitation.groomName : invitation.groomNameEn}
               brideName={lang === 'km' ? invitation.brideName : invitation.brideNameEn}
               contactPhone={invitation.contactPhone}
+              lang={lang}
+              onToast={showToast}
+            />
+
+            <SectionDivider />
+
+            <ChatQrSection
+              contactPhone={invitation.contactPhone}
+              groomName={lang === 'km' ? invitation.groomName : invitation.groomNameEn}
+              brideName={lang === 'km' ? invitation.brideName : invitation.brideNameEn}
               lang={lang}
               onToast={showToast}
             />
