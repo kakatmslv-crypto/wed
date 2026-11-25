@@ -9,6 +9,7 @@ import { InvitationEditorModal } from './components/InvitationEditorModal';
 import { MusicPlayerButton } from './components/MusicPlayerButton';
 import { PhotoGalleryLightbox } from './components/PhotoGalleryLightbox';
 import { ResilientImage } from './components/ResilientImage';
+import { RoyalCeremonyFeatures } from './components/RoyalCeremonyFeatures';
 import { RsvpWishesSection } from './components/RsvpWishesSection';
 import { ScheduleAndVenue } from './components/ScheduleAndVenue';
 import { DEFAULT_INVITATION, ENGAGEMENT_GALLERY } from './data/defaultInvitation';
@@ -31,7 +32,11 @@ export default function App() {
     try {
       const saved = window.localStorage.getItem(INVITATION_STORAGE_KEY);
       if (saved) {
-        return { ...DEFAULT_INVITATION, ...JSON.parse(saved) };
+        const merged = { ...DEFAULT_INVITATION, ...JSON.parse(saved) };
+        if (merged.brideMother === 'លោកស្រី ស៊នឡុងអែង') {
+          merged.brideMother = DEFAULT_INVITATION.brideMother;
+        }
+        return merged;
       }
     } catch {
       // Ignore storage read errors
@@ -255,6 +260,15 @@ export default function App() {
             <SectionDivider />
 
             <ScheduleAndVenue data={invitation} lang={lang} onToast={showToast} />
+
+            <SectionDivider />
+
+            <RoyalCeremonyFeatures
+              groomName={lang === 'km' ? invitation.groomName : invitation.groomNameEn}
+              brideName={lang === 'km' ? invitation.brideName : invitation.brideNameEn}
+              lang={lang}
+              onToast={showToast}
+            />
 
             <SectionDivider />
 

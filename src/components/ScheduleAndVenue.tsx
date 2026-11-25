@@ -9,20 +9,26 @@ interface ScheduleAndVenueProps {
 
 export function ScheduleAndVenue({ data, lang, onToast }: ScheduleAndVenueProps) {
   const cleanAddress = data.venueAddress.replace(/^នៅ/, '');
-  const mapsQuery = encodeURIComponent(`${cleanAddress} Cambodia`);
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-  const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+  const coords = (data.venueCoordinates || '').trim();
+  const mapsQuery = coords
+    ? encodeURIComponent(coords)
+    : encodeURIComponent(`${cleanAddress} Cambodia`);
+  const mapsUrl =
+    data.venueMapUrl?.trim() || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+  const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
   const phoneDigits = (data.contactPhone || '0719474667').replace(/[^\d+]/g, '');
 
   const handleCopyAddress = async () => {
     const addr = lang === 'km' ? data.venueAddress : data.venueAddressEn;
     try {
-      await navigator.clipboard.writeText(addr);
+      await navigator.clipboard.writeText(`${addr}\n${mapsUrl}`);
     } catch {
       // Fallback ignored
     }
     onToast(
-      lang === 'km' ? 'បានចម្លងអាសយដ្ឋានទីតាំងរួចរាល់!' : 'Venue address copied to clipboard!'
+      lang === 'km'
+        ? 'បានចម្លងអាសយដ្ឋាន និងតំណផែនទីរួចរាល់!'
+        : 'Venue address & Google Maps link copied!'
     );
   };
 
@@ -134,9 +140,14 @@ export function ScheduleAndVenue({ data, lang, onToast }: ScheduleAndVenueProps)
                   ? 'គេហដ្ឋានភូមិក្តុលលើ · ស្រុកក្រូចឆ្មារ'
                   : 'Kdol Leu Village Residence · Tbong Khmum'}
               </h4>
-              <p className="text-xs text-[#5C5449] mt-1 leading-relaxed">
+                <p className="text-xs text-[#5C5449] mt-1 leading-relaxed">
                 {lang === 'km' ? data.venueAddress : data.venueAddressEn}
               </p>
+              {coords && (
+                <p className="text-[10px] text-[#8D6E36] mt-1 tabular-nums">
+                  GPS: {coords}
+                </p>
+              )}
             </div>
           </div>
 
@@ -167,7 +178,7 @@ export function ScheduleAndVenue({ data, lang, onToast }: ScheduleAndVenueProps)
               className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#FAF7F0] border border-[#D8C59B] text-[#1A1714] rounded-xl font-medium text-xs hover:bg-[#F3ECDC] transition cursor-pointer whitespace-nowrap"
             >
               <Copy className="w-3.5 h-3.5 text-[#8D6E36]" />
-              <span>{lang === 'km' ? 'ចម្លងអាសយដ្ឋាន' : 'Copy Address'}</span>
+              <span>{lang === 'km' ? 'ចម្លងទីតាំង & Maps' : 'Copy Address & Map'}</span>
             </button>
           </div>
 

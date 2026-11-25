@@ -38,6 +38,8 @@ export interface InvitationData {
   noonActivityEn: string;
   venueAddress: string;
   venueAddressEn: string;
+  venueMapUrl: string;
+  venueCoordinates: string;
   closingMessage: string;
   closingMessageEn: string;
   thankYouLine: string;

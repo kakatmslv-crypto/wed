@@ -10,7 +10,7 @@ export const DEFAULT_INVITATION: InvitationData = {
   groomFatherEn: 'Mr. Oum Narai',
   groomMotherEn: 'Mrs. Sun Phary',
   brideFather: 'លោក យ៉ាត សិទ្ធ',
-  brideMother: 'លោកស្រី ស៊នឡុងអែង',
+  brideMother: 'លោកស្រី ស៊ន ឡុងអេង',
   brideFatherEn: 'Mr. Yat Seth',
   brideMotherEn: 'Mrs. Sorn Long Eng',
   guestHonorific: 'សូមគោរពអញ្ជើញ',
@@ -39,6 +39,8 @@ export const DEFAULT_INVITATION: InvitationData = {
   noonActivityEn: 'Fellowship Luncheon',
   venueAddress: 'នៅភូមិក្តុលលើ ឃុំទ្រា ស្រុកក្រូចឆ្មារ ខេត្តត្បូងឃ្មុំ',
   venueAddressEn: 'Kdol Leu Village, Trea Commune, Kroch Chhmar District, Tbong Khmum Province',
+  venueMapUrl: 'https://maps.app.goo.gl/EVo13yesz4RuwY6f9?g_st=ic',
+  venueCoordinates: '12.2769804,105.5644019',
   closingMessage: 'សូមអរគុណចំពោះវត្តមាន និងពរជ័យដ៏មានតម្លៃរបស់លោកអ្នក',
   closingMessageEn: 'Thank you for your gracious presence and cherished blessings',
   thankYouLine: 'សូមអរគុណទុកជាមុន!',
@@ -170,7 +172,10 @@ export function formatKhmerInvitationPlainText(data: InvitationData): string {
     `• ${data.gregorianDate} (${data.lunarDate})`,
     `• វេលាម៉ោង៖ ${data.morningTime} (${data.morningActivity}) / ${data.noonTime} (${data.noonActivity})`,
     `• ទីតាំង៖ ${data.venueAddress}`,
+    data.venueMapUrl ? `• ផែនទី Google Maps៖ ${data.venueMapUrl}` : '',
     '',
     data.closingMessage,
-  ].join('\n');
+  ]
+    .filter((line, idx, arr) => line !== '' || arr[idx - 1] !== '')
+    .join('\n');
 }

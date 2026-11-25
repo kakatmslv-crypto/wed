@@ -24,7 +24,14 @@ export function downloadEngagementIcs(data: InvitationData): void {
     `${data.noonTime}: ${data.noonActivity}`,
     `មាតាបិតាខាងប្រុស: ${data.groomFather} និង ${data.groomMother}`,
     `មាតាបិតាខាងស្រី: ${data.brideFather} និង ${data.brideMother}`,
-  ].join('\n');
+    data.venueMapUrl ? `ផែនទី Google Maps: ${data.venueMapUrl}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  const geoLine = data.venueCoordinates
+    ? `GEO:${data.venueCoordinates.replace(',', ';').replace(/\s+/g, '')}`
+    : '';
 
   const icsContent = [
     'BEGIN:VCALENDAR',
@@ -39,9 +46,13 @@ export function downloadEngagementIcs(data: InvitationData): void {
     `SUMMARY:${escapeIcsText(summary)}`,
     `DESCRIPTION:${escapeIcsText(description)}`,
     `LOCATION:${escapeIcsText(data.venueAddress)}`,
+    geoLine,
+    data.venueMapUrl ? `URL:${data.venueMapUrl}` : '',
     'END:VEVENT',
     'END:VCALENDAR',
-  ].join('\r\n');
+  ]
+    .filter(Boolean)
+    .join('\r\n');
 
   const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
   const url = URL.createObjectURL(blob);

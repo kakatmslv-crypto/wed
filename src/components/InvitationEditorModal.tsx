@@ -323,6 +323,32 @@ export function InvitationEditorModal({
                 className="w-full px-3 py-2 text-xs rounded-lg border border-[#D6CBB3] bg-white text-[#1C1917]"
               />
             </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-medium text-[#292524] mb-1">
+                  តំណ Google Maps
+                </label>
+                <input
+                  type="url"
+                  value={data.venueMapUrl}
+                  onChange={(e) => updateField('venueMapUrl', e.target.value)}
+                  placeholder="https://maps.app.goo.gl/..."
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-[#D6CBB3] bg-white text-[#1C1917]"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-medium text-[#292524] mb-1">
+                  កូអរដោនេ GPS (Lat, Lng)
+                </label>
+                <input
+                  type="text"
+                  value={data.venueCoordinates}
+                  onChange={(e) => updateField('venueCoordinates', e.target.value)}
+                  placeholder="12.2769804,105.5644019"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-[#D6CBB3] bg-white text-[#1C1917]"
+                />
+              </div>
+            </div>
             <div>
               <label className="block text-[11px] font-medium text-[#292524] mb-1">
                 លេខទូរស័ព្ទទំនាក់ទំនង

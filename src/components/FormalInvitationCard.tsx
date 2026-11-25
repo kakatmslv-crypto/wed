@@ -4,7 +4,7 @@ import { formatKhmerInvitationPlainText } from '../data/defaultInvitation';
 import { InvitationData, Lang, PaperPalette } from '../types/invitation';
 import { downloadEngagementIcs } from '../utils/calendar';
 import { exportInvitationCardPng } from '../utils/exportCardPng';
-import { KhmerLotusDivider } from './KhmerOrnament';
+import { KhmerCornerOrnament, KhmerLotusDivider } from './KhmerOrnament';
 import { ResilientImage } from './ResilientImage';
 
 interface FormalInvitationCardProps {
@@ -85,30 +85,40 @@ export function FormalInvitationCard({
         />
 
         {/* Full-Width Centered Typography Inside Carved Golden Frame */}
-        <div className="relative z-10 h-full w-full p-4 sm:p-5 flex flex-col justify-between">
-          <div className="relative flex-1 w-full flex flex-col justify-between">
+        <div className="relative z-10 h-full w-full p-3 sm:p-3.5 flex flex-col justify-between">
+          <div className="relative flex-1 w-full rounded-xl border border-[#B88C3A]/65 bg-gradient-to-b from-[#FFFDF7]/78 via-[#FFF9EA]/68 to-[#FFFDF5]/82 backdrop-blur-[2px] shadow-[inset_0_0_0_3px_rgba(255,252,243,0.78),inset_0_0_0_4px_rgba(184,140,58,0.26),0_10px_28px_-10px_rgba(92,62,14,0.22)] px-3.5 py-2.5 sm:px-4 sm:py-3.5 flex flex-col justify-between overflow-hidden">
+            {/* Carved Khmer Corner Ornaments */}
+            <KhmerCornerOrnament position="tl" className="absolute top-1 left-1 !w-7 !h-7 sm:!w-8 sm:!h-8 opacity-85" />
+            <KhmerCornerOrnament position="tr" className="absolute top-1 right-1 !w-7 !h-7 sm:!w-8 sm:!h-8 opacity-85" />
+            <KhmerCornerOrnament position="bl" className="absolute bottom-1 left-1 !w-7 !h-7 sm:!w-8 sm:!h-8 opacity-85" />
+            <KhmerCornerOrnament position="br" className="absolute bottom-1 right-1 !w-7 !h-7 sm:!w-8 sm:!h-8 opacity-85" />
+
             {/* Top: Khmer Decorative Symbol & Main Heading */}
-            <header className="pt-1 space-y-1">
-              <KhmerLotusDivider className="!my-1" />
-              <h2 className="font-moul text-[17px] sm:text-[19px] champagne-title leading-relaxed">
+            <header className="relative z-10 pt-0.5 space-y-0.5">
+              <KhmerLotusDivider className="!my-0.5 scale-90" />
+              <h2 className="font-moul text-[16px] sm:text-[18px] champagne-title leading-snug drop-shadow-[0_1px_0_rgba(255,255,255,0.85)]">
                 {lang === 'km' ? data.ceremonyHeadline : data.ceremonyHeadlineEn}
               </h2>
-              <p className="text-[10px] tracking-[0.22em] uppercase font-editorial text-[#8C6A2E]">
+              <p className="text-[9px] tracking-[0.26em] uppercase font-editorial text-[#8A6629]">
                 {lang === 'km' ? 'Engagement Ceremony' : data.ceremonyHeadline}
               </p>
             </header>
 
             {/* Parents Honored Quietly */}
-            <div className="text-[11px] sm:text-xs text-[#4E4132] leading-snug space-y-0.5 w-full">
-              <p className="font-medium text-[#7A5B26]">
-                {lang === 'km' ? 'មាតាបិតាទាំងសងខាង' : 'With the blessings of both families'}
-              </p>
-              <p>
+            <div className="relative z-10 text-[10.5px] sm:text-[11.5px] text-[#453829] leading-snug space-y-0.5 w-full py-1">
+              <div className="flex items-center justify-center gap-2 pb-0.5">
+                <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#B88D3D]/55" />
+                <p className="text-[10px] sm:text-[10.5px] font-semibold text-[#7A5920]">
+                  {lang === 'km' ? 'មាតាបិតាទាំងសងខាង' : 'With the blessings of both families'}
+                </p>
+                <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#B88D3D]/55" />
+              </div>
+              <p className="font-medium">
                 {lang === 'km'
                   ? `${data.groomFather} និង ${data.groomMother}`
                   : `${data.groomFatherEn} & ${data.groomMotherEn}`}
               </p>
-              <p>
+              <p className="font-medium">
                 {lang === 'km'
                   ? `${data.brideFather} និង ${data.brideMother}`
                   : `${data.brideFatherEn} & ${data.brideMotherEn}`}
@@ -116,52 +126,57 @@ export function FormalInvitationCard({
             </div>
 
             {/* Center: Prominent Gold Lettering Couple Names */}
-            <div className="py-1 space-y-1 w-full">
-              <p className="font-moul text-[22px] sm:text-[25px] champagne-title drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
+            <div className="relative z-10 py-1 px-2 space-y-0.5 w-full bg-[radial-gradient(ellipse_at_center,rgba(255,252,242,0.88)_0%,transparent_74%)]">
+              <p className="font-moul text-[21px] sm:text-[24px] champagne-title leading-relaxed drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)]">
                 {lang === 'km' ? data.groomName : data.groomNameEn}
               </p>
-              <p className="font-editorial italic text-base sm:text-lg text-[#9E7B3B] leading-none">
-                &amp;
-              </p>
-              <p className="font-moul text-[22px] sm:text-[25px] champagne-title drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
+              <div className="flex items-center justify-center gap-2.5">
+                <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#B88D3D]/60" />
+                <span className="font-editorial italic text-sm sm:text-base text-[#9A7430] leading-none">
+                  &amp;
+                </span>
+                <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#B88D3D]/60" />
+              </div>
+              <p className="font-moul text-[21px] sm:text-[24px] champagne-title leading-relaxed drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)]">
                 {lang === 'km' ? data.brideName : data.brideNameEn}
               </p>
             </div>
 
             {/* Invitation Message */}
-            <div className="space-y-1 w-full px-1">
-              <p className="font-moul text-xs sm:text-[13.5px] text-[#7F5E24]">
+            <div className="relative z-10 space-y-0.5 w-full px-1">
+              <p className="font-moul text-[11.5px] sm:text-[13px] text-[#7D5B20]">
                 {lang === 'km' ? data.guestHonorific : 'Cordially Invite'}
               </p>
-              <p className="text-[11.5px] sm:text-xs text-[#362C21] leading-[1.75] w-full">
+              <p className="text-[11px] sm:text-[11.5px] text-[#33281D] leading-[1.6] w-full">
                 {lang === 'km' ? data.invitationLead : data.invitationLeadEn}
               </p>
             </div>
 
-            {/* Event Details Box */}
-            <div className="w-full bg-[#FFFBF0]/88 backdrop-blur-[2px] border border-[#B88D3D]/55 rounded-xl px-3.5 py-2.5 space-y-0.5 text-[11px] sm:text-xs text-[#2D251C]">
-              <p className="font-semibold text-[#6E511E]">
+            {/* Event Details Plaque */}
+            <div className="relative z-10 w-full rounded-xl bg-gradient-to-b from-[#FFFDF7]/95 to-[#FBF2DC]/90 border border-[#C29747]/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_4px_14px_-6px_rgba(110,78,24,0.18)] px-3 py-2 sm:px-3.5 sm:py-2.5 space-y-0.5 text-[10.5px] sm:text-[11.5px] text-[#2D251C]">
+              <p className="font-moul text-[11px] sm:text-xs text-[#6E4D16]">
                 {lang === 'km' ? data.gregorianDate : data.gregorianDateEn}
               </p>
-              <p className="text-[10px] sm:text-[10.5px] text-[#6B5D4D]">({data.lunarDate})</p>
-              <p className="font-medium text-[#2D251C]">
+              <p className="text-[9.5px] sm:text-[10px] text-[#6B5D4D]">({data.lunarDate})</p>
+              <div className="h-px w-20 mx-auto my-0.5 bg-gradient-to-r from-transparent via-[#C29747]/45 to-transparent" />
+              <p className="font-medium text-[#2A2218]">
                 {lang === 'km'
                   ? `វេលាម៉ោង ${data.morningTime} (${data.morningActivity})`
                   : `${data.morningTimeEn} (${data.morningActivityEn})`}
               </p>
-              <p className="text-[10.5px] text-[#5B4F40]">
+              <p className="text-[10px] sm:text-[10.5px] text-[#5B4F40]">
                 {lang === 'km'
                   ? `និង ${data.noonTime} (${data.noonActivity})`
                   : `& ${data.noonTimeEn} (${data.noonActivityEn})`}
               </p>
-              <p className="text-[11px] font-medium text-[#473B2D] pt-0.5 leading-snug">
+              <p className="text-[10.5px] sm:text-[11px] font-medium text-[#433628] pt-0.5 leading-snug">
                 {lang === 'km' ? `ទីតាំង៖ ${data.venueAddress}` : `Location: ${data.venueAddressEn}`}
               </p>
             </div>
 
             {/* Footer Blessing */}
-            <footer className="pb-1 w-full">
-              <p className="text-[11px] sm:text-[11.5px] font-medium text-[#6B542D] leading-relaxed">
+            <footer className="relative z-10 pb-0.5 px-2 w-full">
+              <p className="text-[10px] sm:text-[11px] font-medium text-[#6B5125] leading-relaxed">
                 {lang === 'km' ? data.closingMessage : data.closingMessageEn}
               </p>
             </footer>
