@@ -325,7 +325,7 @@ export function InvitationEditorModal({
             </div>
             <div>
               <label className="block text-[11px] font-medium text-[#292524] mb-1">
-                លេខទូរស័ព្ទទំនាក់ទំនង / Telegram
+                លេខទូរស័ព្ទទំនាក់ទំនង
               </label>
               <input
                 type="tel"

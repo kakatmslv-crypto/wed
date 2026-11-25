@@ -184,7 +184,7 @@ export function FormalInvitationCard({
                 ? 'កំពុងបង្កើតរូបធៀប...'
                 : 'Generating 9:16 Image...'
               : lang === 'km'
-              ? 'ទាញយករូបធៀប 9:16 (PNG) សម្រាប់ផ្ញើ Messenger / Telegram'
+              ? 'ទាញយករូបធៀប 9:16 (PNG)'
               : 'Download 9:16 Invitation Image (PNG)'}
           </span>
         </button>

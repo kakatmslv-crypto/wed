@@ -1,4 +1,4 @@
-import { Copy, MapPin, Navigation, Phone, Send, Sun, Utensils } from 'lucide-react';
+import { Copy, MapPin, Navigation, Phone, Sun, Utensils } from 'lucide-react';
 import { InvitationData, Lang } from '../types/invitation';
 
 interface ScheduleAndVenueProps {
@@ -13,9 +13,6 @@ export function ScheduleAndVenue({ data, lang, onToast }: ScheduleAndVenueProps)
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
   const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
   const phoneDigits = (data.contactPhone || '0719474667').replace(/[^\d+]/g, '');
-  const telegramPhone = phoneDigits.startsWith('0')
-    ? `+855${phoneDigits.slice(1)}`
-    : phoneDigits;
 
   const handleCopyAddress = async () => {
     const addr = lang === 'km' ? data.venueAddress : data.venueAddressEn;
@@ -190,24 +187,13 @@ export function ScheduleAndVenue({ data, lang, onToast }: ScheduleAndVenueProps)
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5">
-                <a
-                  href={`tel:${phoneDigits}`}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#FAF7F0] hover:bg-[#F3ECDC] border border-[#D8C59B] text-[11px] font-medium text-[#1A1714] transition whitespace-nowrap"
-                >
-                  <Phone className="w-3 h-3 text-[#8D6E36]" />
-                  <span>{lang === 'km' ? 'តេសួរ' : 'Call'}</span>
-                </a>
-                <a
-                  href={`https://t.me/${telegramPhone}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#229ED9] hover:bg-[#1B89BD] text-white text-[11px] font-medium transition whitespace-nowrap"
-                >
-                  <Send className="w-3 h-3" />
-                  <span>Telegram</span>
-                </a>
-              </div>
+              <a
+                href={`tel:${phoneDigits}`}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FAF7F0] hover:bg-[#F3ECDC] border border-[#D8C59B] text-[11px] font-medium text-[#1A1714] transition whitespace-nowrap"
+              >
+                <Phone className="w-3 h-3 text-[#8D6E36]" />
+                <span>{lang === 'km' ? 'តេសួរ' : 'Call'}</span>
+              </a>
             </div>
           )}
         </div>

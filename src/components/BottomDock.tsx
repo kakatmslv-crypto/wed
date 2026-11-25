@@ -1,4 +1,4 @@
-import { CalendarClock, Camera, Home, MapPin, MessageCircleHeart } from 'lucide-react';
+import { CalendarClock, Camera, Home, MapPin, Phone } from 'lucide-react';
 import { Lang } from '../types/invitation';
 
 interface BottomDockProps {
@@ -38,9 +38,9 @@ export function BottomDock({ lang, onScrollTo }: BottomDockProps) {
     },
     {
       id: 'rsvp-section',
-      icon: MessageCircleHeart,
-      km: 'ជូនពរ',
-      en: 'RSVP',
+      icon: Phone,
+      km: 'ទំនាក់ទំនង',
+      en: 'Contact',
       isPrimary: false,
     },
   ];
